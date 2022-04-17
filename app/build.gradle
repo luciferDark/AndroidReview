@@ -1,0 +1,69 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 31
+    buildToolsVersion "30.0.1"
+
+    defaultConfig {
+        applicationId "com.ll.test"
+        minSdkVersion 17
+        targetSdkVersion 30
+        versionCode 27
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    lintOptions {
+        checkReleaseBuilds false
+    }
+    signingConfigs {
+        debug {
+            storeFile file('evol.keystore')
+            storePassword 'dzL2D*VP6nuX6d#K'
+            keyAlias 'evol'
+            keyPassword 'dzL2D*VP6nuX6d#K'
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+        release {
+            storeFile file('evol.keystore')
+            storePassword 'dzL2D*VP6nuX6d#K'
+            keyAlias 'evol'
+            keyPassword 'dzL2D*VP6nuX6d#K'
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        debug {
+            resValue "string", "app_name", "testDebug"
+            jniDebuggable true
+            debuggable true
+        }
+        release {
+            resValue "string", "app_name", "testRelease"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-unity.txt'
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+//    implementation 'com.google.android.material:material:1.5.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation project(":injectLib")
+    implementation project(":retrofitLib")
+}

@@ -1,0 +1,4 @@
+include ':retrofitLib'
+include ':injectLib'
+include ':app'
+rootProject.name = "Test"
